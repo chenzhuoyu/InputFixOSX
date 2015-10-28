@@ -16,16 +16,25 @@ class ClassTransformer extends IClassTransformer
             {
                 val method = super.visitMethod(access, name, desc, signature, exceptions)
 
-                if (name != "displayGuiScreen" && (name != "a" || desc != "(Lbxf;)V"))
-                    return method
-
-                method.visitIntInsn(Opcodes.ALOAD, 1)
-                method.visitMethodInsn(
-                    Opcodes.INVOKESTATIC,
-                    "org/oxygen/inputfixosx/HookHandlers",
-                    "minecraftDisplayGuiScreen",
-                    "(Lnet/minecraft/client/gui/GuiScreen;)V",
-                    false)
+                if (name == "initStream" || (name == "al" && desc == "()V"))
+                {
+                    method.visitMethodInsn(
+                        Opcodes.INVOKESTATIC,
+                        "org/oxygen/inputfixosx/HookHandlers",
+                        "minecraftInitStream",
+                        "()V",
+                        false)
+                }
+                else if (name == "displayGuiScreen" || (name == "a" && desc == "(Lbxf;)V"))
+                {
+                    method.visitIntInsn(Opcodes.ALOAD, 1)
+                    method.visitMethodInsn(
+                        Opcodes.INVOKESTATIC,
+                        "org/oxygen/inputfixosx/HookHandlers",
+                        "minecraftDisplayGuiScreen",
+                        "(Lnet/minecraft/client/gui/GuiScreen;)V",
+                        false)
+                }
 
                 method
             }
@@ -46,17 +55,17 @@ class ClassTransformer extends IClassTransformer
             {
                 val method = super.visitMethod(access, name, desc, signature, exceptions)
 
-                if (name != "setFocused" && (name != "b" || desc != "(Z)V"))
-                    return method
-
-                method.visitIntInsn(Opcodes.ALOAD, 0)
-                method.visitIntInsn(Opcodes.ILOAD, 1)
-                method.visitMethodInsn(
-                    Opcodes.INVOKESTATIC,
-                    "org/oxygen/inputfixosx/HookHandlers",
-                    "textSetFocused",
-                    "(Lnet/minecraft/client/gui/GuiTextField;Z)V",
-                    false)
+                if (name == "setFocused" || (name == "b" && desc == "(Z)V"))
+                {
+                    method.visitIntInsn(Opcodes.ALOAD, 0)
+                    method.visitIntInsn(Opcodes.ILOAD, 1)
+                    method.visitMethodInsn(
+                        Opcodes.INVOKESTATIC,
+                        "org/oxygen/inputfixosx/HookHandlers",
+                        "textSetFocused",
+                        "(Lnet/minecraft/client/gui/GuiTextField;Z)V",
+                        false)
+                }
 
                 method
             }
