@@ -1,0 +1,16 @@
+[
+{
+  "modid": "inputfixosx",
+  "name": "InputFix OS X",
+  "description": "Chinese Input Fix for Mac OS X",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["oxygenchen"],
+  "credits": "Copyright, oxygenchen.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
