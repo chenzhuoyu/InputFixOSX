@@ -8,7 +8,6 @@ import org.lwjgl.input.Keyboard
 import org.lwjgl.opengl.Display
 
 import scala.collection.mutable
-import scala.collection.immutable
 
 object HookHandlers
 {
